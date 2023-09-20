@@ -62,7 +62,7 @@
           <td>{{ transaction.scheduleDate | date:'dd/MM/yyyy'}}</td>
           <td>{{ transaction.operation }}</td>
           <td>{{ transaction.taxes | currency:'BRL' }}</td>
-          <td *ngIf="transaction.value && transaction.taxes">{{ transaction.value + transaction.taxes | currency:'BRL' }}</td>
+          <td>{{ (transaction?.value || 0) + (transaction?.taxes || 0) | currency:'BRL' }}</td>
         </tr>
       </tbody>
     </table>
