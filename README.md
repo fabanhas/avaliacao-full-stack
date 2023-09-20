@@ -1,62 +1,41 @@
-# Entregáveis
- Pequena documentação no README explicando suas decisões arquiteturais, versões de linguagem,
-ferramentas utilizadas e instruções para a subida do projeto.
+# Descrição
 
- É obrigatório a criação de um projeto no seu Github para que vejamos os passos feitos
-através dos commits.
+O projeto "Agendamento de Transações" é uma aplicação web desenvolvida em Angular para agendar e gerenciar transações financeiras. A aplicação permite aos usuários agendar transações já calculando as taxas de acordo com os tipos de operações e visualizar o histórico de transações agendadas.
 
-# Avaliação
+# Tecnologias Utilizadas
 
-Desenvolver tanto a API quanto o front-end (Spring boot e Vue no front, caso não tenha conhecimentos de vue, aceitamos o front com angular)
+Frontend: Angular
 
-O objetivo dessa tarefa é avaliar como você vai desenvolver o código em termos de estilo,
-eficiência, qualidade e prazo de entrega.
+Backend: Java 11, Spring, Lombok
 
-A tarefa é a seguinte:
+Banco de Dados: H2
 
-Desenvolver um sistema de agendamento de transferências financeiras.
+API: /transaction
 
-1) O usuário deve poder agendar uma transferência financeira com as seguintes
- informações:
- Conta de origem (padrão XXXXXX)
- Conta de destino (padrão XXXXXX)
- Valor da transferência
- Taxa (a ser calculada)
- Data da transferência (data que será realizada a transferência)
- Data de agendamento (hoje)
- 
-2) Cada tipo de transação segue uma regra diferente para cálculo da taxa
+Endpoint GET: Retorna todas as transações agendadas.
+Endpoint POST: Permite agendar uma nova transação.
 
- A: Tranferências no mesmo dia do agendamento tem uma taxa de $3 mais 3% do valor a
-ser transferido;
+# Detalhes
 
-B: Tranferências até 10 dias da data de agendamento possuem uma taxa de $12.
+## Backend
 
-C: Operações do tipo C tem uma taxa regressiva conforme a data de
-transferência:
-
- acima de 10 dias da data de agendamento 8.2%
- 
- acima de 20 dias da data de agendamento 6.9%
- 
- acima de 30 dias da data de agendamento 4.7%
- 
- acima de 40 dias da data de agendamento 1.7%
- 
- D: Operações do tipo D tem a taxa igual a A, B ou C dependendo do valor da
-transferência.
-
- Valores até $1.000 seguem a taxação tipo A
- 
- Valores de $1.001 até $2.000 seguem a taxação tipo B
- 
- Valores maiores que $2.000 seguem a taxação tipo C
- 
-Obs: Caso não haja taxa aplicável, lançar um alerta sobre o erro.
-
-3) O usuário deve poder ver todos os agendamentos cadastrados.
-
-Nota: A persistência deve ser feita em banco de dados em memória (h2, por exemplo).
-Boa sorte!
+O projeto segue um padrão de Controller > Service > Repository 
+Foi utilizado um Enum para as Operações existentes e um handler para cada tipo de operação, Uma camada facade para fornecer uma interface unificada para separar as regras de taxação de acordo com as Operações, facilidando a manutenção nas operações existentes e simplificando a adição de novos tipos de transação.
 
 
+## Frontend
+
+O projeto frontend é bem simples mas contém formatação dos campos de data e dos campos do valor, taxa e valor total e validação dos campos de entrada, a interface contem um formulario para agendar uma nova transação e listar todas as transações cadastradas
+
+# Instalação
+Importe a aplicação backend na sua IDE de preferencia
+installe as depencias do maven e inicialize a aplicação
+
+Para o frontend
+Instale as dependências: npm install
+
+Uso
+Inicie a aplicação frontend: ng serve
+
+Acesse a aplicação no seu navegador: http://localhost:4200
+Para usar a aplicação, siga as instruções fornecidas na interface.
