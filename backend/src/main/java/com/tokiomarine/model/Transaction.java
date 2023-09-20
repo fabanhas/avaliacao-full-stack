@@ -1,7 +1,9 @@
 package com.tokiomarine.model;
 
 import com.tokiomarine.enums.Operation;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -14,6 +16,7 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 @Data
+@NoArgsConstructor
 @Entity
 @ToString
 @Table(name = "Transaction")

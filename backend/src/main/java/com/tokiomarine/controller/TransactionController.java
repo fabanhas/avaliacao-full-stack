@@ -21,7 +21,7 @@ public class TransactionController {
     public ResponseEntity<?> schedule(@RequestBody Transaction request){
         try {
             service.schedule(request, request.getOperation().getCode());
-            return new ResponseEntity<>(request, HttpStatus.CREATED);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (BadRequestException e) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
