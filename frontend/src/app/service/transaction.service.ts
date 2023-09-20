@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Transaction } from '../model/Transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +12,11 @@ export class TransactionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTransactions(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/list`);
+  getAllTransactions(): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(`${this.baseUrl}`);
   }
 
-  scheduleTransaction(transactionData: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/schedule`, transactionData);
+  scheduleTransaction(transactionData: any): Observable<Transaction> {
+    return this.http.post(`${this.baseUrl}`, transactionData);
   }
 }

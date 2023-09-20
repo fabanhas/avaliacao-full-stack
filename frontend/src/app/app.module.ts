@@ -3,22 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TransactionComponent } from './transaction/transaction.component';
-import { ScheduleTransactionComponent } from './schedule-transaction/schedule-transaction.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { ListComponent } from './list/list.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TransactionComponent,
-    ScheduleTransactionComponent,
     ScheduleComponent,
-    ListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

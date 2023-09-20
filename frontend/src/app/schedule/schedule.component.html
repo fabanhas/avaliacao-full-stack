@@ -1,1 +1,71 @@
-<p>schedule works!</p>
+<div class="container">
+    <h1 class="text-center">Tokio Marine</h1>
+    <h2>Agendar Transação</h2>
+    <form (ngSubmit)="scheduleTransaction()" class="col-4">
+      <div class="form-group">
+        <label for="fromAccount">Conta de Origem:</label>
+        <input type="text" class="form-control" id="fromAccount" name="fromAccount" [(ngModel)]="transaction.fromAccount" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="toAccount">Conta de Destino:</label>
+        <input type="text" class="form-control" id="toAccount" name="toAccount" [(ngModel)]="transaction.toAccount" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="value">Valor:</label>
+        <input type="number" class="form-control" id="value" name="value" [(ngModel)]="transaction.value" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="transferDate">Data de Transferência:</label>
+        <input type="date" class="form-control" id="transferDate" name="transferDate" [(ngModel)]="transaction.transferDate" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="operation">Operação:</label>
+        <select class="form-control" id="operation" name="operation" [(ngModel)]="transaction.operation" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary mt-4">Agendar</button>
+    </form>
+  </div>
+
+  <div class="container mt-5">
+    <h2>Lista de Transações Agendadas</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Conta de Origem</th>
+          <th>Conta de Destino</th>
+          <th>Valor</th>
+          <th>Data de Transferência</th>
+          <th>Data de Agendamento</th>
+          <th>Operação</th>
+          <th>Taxas</th>
+          <th>Valor Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let transaction of transactions">
+          <td>{{ transaction.id }}</td>
+          <td>{{ transaction.fromAccount }}</td>
+          <td>{{ transaction.toAccount }}</td>
+          <td>{{ transaction.value | currency:'BRL'}}</td>
+          <td>{{ transaction.transferDate | date:'dd/MM/yyyy'}}</td>
+          <td>{{ transaction.scheduleDate | date:'dd/MM/yyyy'}}</td>
+          <td>{{ transaction.operation }}</td>
+          <td>{{ transaction.taxes | currency:'BRL' }}</td>
+          <td *ngIf="transaction.value && transaction.taxes">{{ transaction.value + transaction.taxes | currency:'BRL' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  
